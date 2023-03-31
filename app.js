@@ -1,7 +1,7 @@
 const http = require('http');
 const post = require('./controller/post');
 const server = http.createServer().listen(8080);
-const process=require('./lib/process.js');
+//const process=require('./lib/process.js');
 const url = require('url');
 const fs = require('fs');
 
@@ -22,13 +22,7 @@ server.on('request',async(req,res)=>{
 		await post.savePostBody(req, res);
 	}
 	if(req.method === "GET" && stringPath === "api" ){
-		console.log(path[2]);
-		res.writeHead(200, {
-			'Content-Type':'text/plain',
-		});
-		res.write(`${path[2]}`);
-		res.end();
+		const get = require('./controller/get');
+		get.getfunction(req,res,path[2]);
 	}
 });
-
-
