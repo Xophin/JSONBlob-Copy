@@ -1,5 +1,5 @@
 const http = require('http');
-const post = require('./controller/post');
+//const post = require('./controller/post');
 const server = http.createServer().listen(8080);
 //const process=require('./lib/process.js');
 const url = require('url');
@@ -22,8 +22,9 @@ server.on('request',async(req,res)=>{
 		await post.savePostBody(req, res);
 	}
 	if(req.method === "DELETE" && stringPath === "api" ){
-		const delete = require('./controller/delete');
-		delete.getfunction(req,res,path[2]);
+		const deleteFile = require('./controller/delete');
+		await deleteFile.deleteReq(req, res);
+		deleteFile.getfunction(req,res,path[2]);
 	}
 	else {   
 		  res.statusCode = 404;   

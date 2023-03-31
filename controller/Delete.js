@@ -8,13 +8,12 @@ const deleteReq = async function(req,res) {
                res.end('File not found');      
               return;   
               }       
-                   res.statusCode = 405;     
-                  res.end('Deleting file is not enabled');    
-                   return;     
-            fs.unlinkSync(filePath);   
+                else {
+                fs.unlinkSync(filePath);   
 
-            res.statusCode = 200;   
-              res.end('File deleted successfully');  
+                res.statusCode = 200;   
+                  res.end('File deleted successfully');  
+              }
 
             server.listen(3000, () => {  
                 console.log('Server started on port 3000');
