@@ -25,4 +25,16 @@ server.on('request',async(req,res)=>{
 		const get = require('./controller/get');
 		get.getfunction(req,res,path[2]);
 	}
+	if(req.method === "DELETE" && stringPath === "api" ){
+		const deleteFile = require('./controller/delete');
+		await deleteFile(req,res, path[2]);
+		console.log(path[2]);
+		res.writeHead(200, {
+			'Content-Type':'text/plain',
+		});
+		res.write(`${path[2]}`);
+		res.end();
+	}
 });
+
+

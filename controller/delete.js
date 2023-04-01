@@ -1,20 +1,24 @@
 const http = require('http');
 const fs = require('fs');
-const deleteReq = async function(req,res) {
-          const filePath = './data/file.json';   
-          
-        if (!fs.existsSync(filePath)) {      
-             res.statusCode = 404;     
-               res.end('File not found');      
-              return;   
-              }       
-                
-            fs.unlinkSync(filePath);   
+const deleteReq = async function (req, res, id) {
+  let filePath = JSON.parse(fs.readFileSync('./data/file.json'));
+  
+  if(!filePath.hasOwnProperty(id)) {
+    res.writeHead(404, {
+      'Content-Type':'application/json',
+   });
+   res.end(JSON.stringify({status:'failed', message: "id not found"}));
+  }
 
-            res.statusCode = 200;   
-              res.end('File deleted successfully');  
+  delete filePath[id];
+  fs.writeFileSync('./data/file.json', JSON.stringify(filePath));
+  res.writeHead(200, {
+    'Content-Type':'application/json',
+ });
+  res.end(JSON.stringify({
+    'status': 'success',
+    'message': 'item delete successfully'
+  }));
+};
 
-            server.listen(3000, () => {  
-                console.log('Server started on port 3000');
-        })
-    };
+module.exports = deleteReq
