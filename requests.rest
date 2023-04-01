@@ -1,5 +1,5 @@
 ### GET REQUEST
-GET http://localhost:8080/1680114809399
+GET http://localhost:8080/1680115106204
 
 
 ### POST REQUEST
@@ -10,11 +10,11 @@ content-type: application/json
 
 
 ### PUT REQUEST
-PUT http://localhost:8080/1680114613577
+PUT http://localhost:8080/1680114898672
 content-type: application/json
 
 {
-	"hello":{"world"}
+	"hello":{"new pepper test 2"}
 }
 
 ### DELETE REQUEST
