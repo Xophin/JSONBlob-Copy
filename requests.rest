@@ -13,7 +13,7 @@ content-type: application/json
 PUT http://localhost:8080/1680114898672
 content-type: application/json
 
- {"firstName":"John", "lastName":"Doe"}
+ {"firstName":"Parker", "lastName":"Keller"}
 
 ### DELETE REQUEST
 DELETE http://localhost:8080/
