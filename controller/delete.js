@@ -1,17 +1,23 @@
 const http = require('http');
 const fs = require('fs');
-const deleteReq = async function (req, res, id) {
-  let filePath = JSON.parse(fs.readFileSync('./data/file.json'));
+//This code defines a function named deleteReq which is exported for use in other modules. The function takes three parameters: req, res, and uuid.
+//The req and res parameters represent the HTTP request and response objects respectively, while the uuid parameter represents the unique identifier of the post to be deleted.
+const deleteReq = async function (req, res, uuid) {
+  //The function begins by reading the contents of the file with the specified UUID 
+  let filePath = JSON.parse(fs.readFileSync(`./data/${uuid}.json`));
   
-  if(!filePath.hasOwnProperty(id)) {
+  //check if the filePath variable is null. 
+  if(filePath = null) {
+    //If it is null, the function returns a 404 error with a JSON response indicating that the post with the specified UUID was not found.
     res.writeHead(404, {
       'Content-Type':'application/json',
    });
    res.end(JSON.stringify({status:'failed', message: "id not found"}));
   }
-
-  delete filePath[id];
-  fs.writeFileSync('./data/file.json', JSON.stringify(filePath));
+//If the filePath variable is not null, the delete keyword is used to remove the file with the specified UUID from the file system
+  delete fs.readFileSync(`./data/${uuid}.json`);
+  //fs.writeFileSync('./data/file.json', JSON.stringify(filePath));
+  //The function then returns a 200 response with a JSON message indicating that the post was deleted successfully.
   res.writeHead(200, {
     'Content-Type':'application/json',
  });
@@ -20,5 +26,5 @@ const deleteReq = async function (req, res, id) {
     'message': 'item delete successfully'
   }));
 };
-
+//Finally, the function is exported for use in other modules.
 module.exports = deleteReq
