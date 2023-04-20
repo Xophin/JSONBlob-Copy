@@ -5,7 +5,7 @@ const fs = require('fs');
 
 //asynchronous function that takes two parameters req and res; a callback function for a POST request to create a new blog post.
 const savePostBody = async function(req,res) {
-    //console.log("hello");
+    console.log("hello");
     //set the response status code to 200 and the response headers to specify that the response is in JSON format.
     res.writeHead(200, {
         'Content-Type':'application/json',
@@ -28,19 +28,7 @@ const savePostBody = async function(req,res) {
 	}).on('end', () => {
 		body = Buffer.concat(body).toString();
         body = JSON.parse(body);
-        fs.writeFile(`${uuid}.json`,JSON.stringify(body));
-
-        //A new object fileObject is created with the UUID as the key and the parsed JSON as the value.
-        //fileObject[uuid] = body;
-        //console.log(fileObject);
-        console.log(fs.writeFileSync(`./data/${uuid}.json`,'utf8'));
-        //The contents of the file ./data/file.json are read and parsed as JSON.
-        //let dataFile = JSON.parse(fs.readFileSync(`./data/file.json`,'utf8'));
-        //The new fileObject is merged with the existing data from file.json using the spread operator
-        //dataFile= {...dataFile, ...fileObject};
-        //the result is written as a file.
-        //fs.writeFileSync(`./data/${uuid}.json`, JSON.stringify(dataFile));
-
+        fs.writeFileSync(`./data/${uuid}.json`, JSON.stringify(body));
         //The function sends the JSON representation of the parsed body back as the response.
         res.write(JSON.stringify(body));
         //The function then ends the response using the res.end() method.

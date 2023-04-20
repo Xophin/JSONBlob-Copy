@@ -5,7 +5,7 @@ const server = http.createServer().listen(8080);
 const url = require('url');
 const fs = require('fs');
 
-server.on('request',async(req,res)=>{
+server.on('request', async(req,res)=>{
 	//let myfile='file.json';
 	//if(!fs.existsSync(`./data/${myfile}`)) {
 	//	fs.writeFileSync('./data/file.json','');
@@ -18,7 +18,9 @@ server.on('request',async(req,res)=>{
 	console.log(url_components.pathname.split('/'));
 	let path = url_components.pathname.split('/');
 	let stringPath = path[1];
-	if(req.method === "POST" && url_components.pathname === 'api') {
+	console.log(stringPath)
+	if(req.method === "POST" && url_components.pathname === '/api') {
+		console.log('post');
 		await post.savePostBody(req, res);
 	}
 	if(req.method === "GET" && stringPath === "api" ){
