@@ -1,5 +1,5 @@
 ### GET REQUEST
-GET http://localhost:8080/1679949082030/users
+GET http://localhost:8080/1679949082030
 
 
 ### POST REQUEST
@@ -10,11 +10,11 @@ content-type: application/json
 
 
 ### PUT REQUEST
-PUT http://localhost:8080/1680114805517/users/2
+PUT http://localhost:8080/1680114613577
 content-type: application/json
 
- {"firstName":"Parker", "lastName":"Keller"}
+ {"firstName":"Keller", "lastName":"Pence"}
 
 
 ### DELETE REQUEST
-DELETE http://localhost:8080/
+DELETE http://localhost:8080/1680114805517
